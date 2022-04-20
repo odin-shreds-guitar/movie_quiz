@@ -15,10 +15,8 @@ Group Project. Developed in React
 │       ├── ...
 │       ├── App.js
 │       ├── components
-│       │   ├── PeopleList.js
-│       │   └── PersonForm.js
+│       │   └── ...
 │       └── views
-│           ├── Detail.js
 │           └── Main.js
 └── server
     ├── config
