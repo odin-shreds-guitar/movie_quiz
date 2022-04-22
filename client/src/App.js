@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        < Main  default path="/"/>
+        <Route  path="/" element={<Main/>}/>
         <Route path="/reg" element={<Reg/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>
