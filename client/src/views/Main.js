@@ -73,6 +73,7 @@ const Main = () => {
 								<th scope="col">Rank</th>
 								<th scope="col">Name</th>
 								<th scope="col">Score</th>
+								<th scope="col">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -80,16 +81,19 @@ const Main = () => {
 								<th scope="row">1</th>
 								<td>Mark</td>
 								<td>15/20</td>
+								<td>Delete</td>
 								</tr>
 								<tr>
 								<th scope="row">2</th>
 								<td>Jacob</td>
 								<td>11/20</td>
+								<td>Delete</td>
 								</tr>
 								<tr>
 								<th scope="row">3</th>
 								<td>Larry</td>
 								<td>7/20</td>
+								<td>Delete</td>
 								</tr>
 							</tbody>
 						</table>
