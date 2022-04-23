@@ -10,7 +10,7 @@ const Login=(props)=>{
 
     const submitHandler=(e)=>{
         e.preventDefault();
-        axios.post("http://localhost:8000/api/users/login",{email:email,password:password})
+        axios.post("http://localhost:8000/api/users/login",{email:email,password:password},{withCredentials:true})
         .then((res)=>{
             console.log(res.data)
         }).catch((err)=>{
