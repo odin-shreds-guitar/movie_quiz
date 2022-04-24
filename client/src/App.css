@@ -52,6 +52,13 @@ body{
   text-align: center
 }
 
+#login-box, #reg-box{
+  /* border: solid red 3px; */
+  width: 350px;
+  height: 250px;
+  text-align: center
+}
+
 #main-grid{
   display: flex;
   justify-content: space-evenly;
@@ -59,5 +66,16 @@ body{
 
 #app-title{
   line-height: 250px;
-  font-size: 4.5rem;
+  font-size: 4rem;
+}
+
+#password, #email, #username, #confirm-password{
+  margin-left: 15px;
+  width: 90%;
+}
+
+#login-box, #reg-box{
+  height: auto;
+  padding: 10px;
+  width: 350px;
 }

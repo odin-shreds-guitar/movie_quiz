@@ -89,9 +89,9 @@ const Quiz=() =>{
                         }}></input>
                         <p> {movie.title}</p>
                         {
-                            movie.title === userAnswers[indx]
-                            ? <span style={{color: "green", padding: "30px"}}>Correct!</span>
-                            : <span style={{color: "red", padding: "30px"}}>Wrong!</span>
+                            movie.title === tempAnswers[indx]
+                                ? <span style={{color: "green", padding: "30px"}}>Correct!</span>
+                                : <span style={{color: "red", padding: "30px"}}>Wrong!</span>
                         }
                         </div>
                         {/* <p>{movie.title}</p> */}

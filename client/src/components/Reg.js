@@ -47,9 +47,9 @@ const Reg = (props)=>{
         <div>
             <h1>Register</h1>
             <form onSubmit={(e)=>{ submitHandler(e)}}>
-                <div>
-                    <label>username</label>
-                    <input type="text" name="username" value={user.username} onChange={(e)=>{inputHandler(e)}}/>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input id="username" type="text" class="form-control" name="username" value={user.username} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.username?
                         <p>{errors.username.message}</p>
@@ -57,9 +57,9 @@ const Reg = (props)=>{
                         null
                     }
                 </div>
-                <div>
-                    <label>Email</label>
-                    <input type="email" name="email" value={user.email} onChange={(e)=>{inputHandler(e)}}/>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" class="form-control"  type="email" name="email" value={user.email} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.email?
                         <p>{errors.email.message}</p>
@@ -67,9 +67,9 @@ const Reg = (props)=>{
                         null
                     }
                 </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" name="password" value={user.password} onChange={(e)=>{inputHandler(e)}}/>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" class="form-control"  type="password" name="password" value={user.password} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.password?
                         <p>{errors.password.message}</p>
@@ -77,9 +77,9 @@ const Reg = (props)=>{
                         null
                     }
                 </div>
-                <div>
-                    <label>Confirm Password</label>
-                    <input type="password" name="confirmPassword" value={user.confirmPassword} onChange={(e)=>{inputHandler(e)}}/>
+                <div class="mb-3">
+                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                    <input id="confirm-password" class="form-control" type="password" name="confirmPassword" value={user.confirmPassword} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.confirmPassword?
                         <p>{errors.confirmPassword.message}</p>
@@ -87,7 +87,7 @@ const Reg = (props)=>{
                         null
                     }
                 </div>
-                <button type="submit">Register</button>
+                <button class="btn btn-primary" type="submit">Register</button>
             </form>
         </div>
     )

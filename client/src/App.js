@@ -11,9 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        < Route  default path="/" element={<Main/>}/>
-        <Route path="/reg" element={<Reg/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route default path="/" element={<Login/>}/>
+        <Route path="/main" element={<Main/>}/>
         <Route path="/quiz" element={<Quiz/>}/>
         <Route path="/results/:correctNum/:totalNum" element={<Results/>}/>
         <Route path="/user/:id" element={<UserProfile/>}/>
