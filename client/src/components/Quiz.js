@@ -2,6 +2,8 @@ import React , {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
+import background from "../img/background.png"
+
 
 const Quiz=() =>{
     // List of movies that will be used as questions
@@ -25,13 +27,13 @@ const Quiz=() =>{
     //call made to API which retrieves one full page of movies
     useEffect(()=>{
         const pageNum = Math.floor(Math.random() * 20);
-        console.log(pageNum);
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=039df924b633bb219ed0678a208e69d4&language=en-US&page=${pageNum}`)
-        .then(page=>{
-            //filters out the movies that don't have posters and storees the ones that do in state
-            setQuizQuestions(page.data.results.filter(movie => movie.backdrop_path != null))
-        })
-        .catch(err => console.log(err))
+            .then(page=>{
+                //filters out the movies that don't have posters and storees the ones that do in state
+                console.log("results are " + page.data.results)
+                setQuizQuestions(page.data.results.filter(movie => movie.backdrop_path != null))
+                })
+            .catch(err => console.log(err))
     },[])
 
 
@@ -71,47 +73,51 @@ const Quiz=() =>{
         setIndex(selectedIndex);
     };
     return(
-    <form onSubmit={handleSubmit}>
-            <Carousel activeIndex={index} onSelect={handleSelect}  slide={false} keyboard={false} indicators={false} wrap={false} nextIcon={<button>Next question</button>} interval={null} prevIcon={<button>Previous Question</button>}>
-                {
-                //mapping the quiz questions in state to then display posters
-                quizQuestions.map((movie,indx)=>{
-                    if(indx < 10){
-                        return<Carousel.Item key={indx} style={{marginLeft:"25vw"}}>
-                        <img src={`${base_url}${movie.backdrop_path}`} className="d-block w-100" alt='' style={{maxWidth:"50vw"}}></img>
-                        <div className="form-group ">
-                        <label htmlFor='answer'>Which movie is this? </label>
-                        <input style={{width:"50vw"}} type="text" className="form-control" id={`answer${indx}`} placeholder="Enter answer" onChange={(e)=>{
-                            //this logic allows the index of quizQuestions to match the index of answered questions so as to make it easier to compare upon submission
-                            tempAnswers[indx] = e.target.value;
-                            setUserAnswers(tempAnswers);
-                            console.log(userAnswers)
-                        }}></input>
-                        <p> {movie.title}</p>
-                        {
-                            movie.title === tempAnswers[indx]
-                                ? <span style={{color: "green", padding: "30px"}}>Correct!</span>
-                                : <span style={{color: "red", padding: "30px"}}>Wrong!</span>
+    <div style={{ backgroundImage: `url(${background})`}}>
+        <form onSubmit={handleSubmit}>
+                <Carousel activeIndex={index} onSelect={handleSelect}  slide={false} keyboard={false} indicators={false} wrap={false} nextIcon={<button>Next question</button>} interval={null} prevIcon={<button>Previous Question</button>}>
+                    {
+                    //mapping the quiz questions in state to then display posters
+                    quizQuestions.map((movie,indx)=>{
+                        if(indx < 10){
+                            return<Carousel.Item key={indx} style={{marginLeft:"25vw"}}>
+                            <img src={`${base_url}${movie.backdrop_path}`} className="d-block w-100" alt='' style={{maxWidth:"50vw"}}></img>
+                            <div className="form-group ">
+                            <label htmlFor='answer'>Which movie is this? </label>
+                            <input style={{width:"50vw"}} type="text" className="form-control" id={`answer${indx}`} placeholder="Enter answer"
+                                onChange={(e)=>{
+                                        //this logic allows the index of quizQuestions to match the index of answered questions so as to make it easier to compare upon submission
+                                        tempAnswers[indx] = e.target.value;
+                                        setUserAnswers(tempAnswers);
+                                        console.log(userAnswers)
+                                    }}>
+                            </input>
+                            {/* for testing purposes */}
+                            {/* <p> {movie.title}</p> */}
+                            {
+                                movie.title === tempAnswers[indx]
+                                    ? <span style={{color: "green", padding: "30px"}}>Correct!</span>
+                                    : <span style={{color: "red", padding: "30px"}}>Wrong!</span>
+                            }
+                            </div>
+                        </Carousel.Item>
                         }
-                        </div>
-                        {/* <p>{movie.title}</p> */}
-                    </Carousel.Item>
+                        else{
+                            return
+                        }
+                        })
                     }
-                    else{
-                        return
-                    }
-                    })
+                </Carousel>
+                {
+                    //if we reach the end of the quiz, display the finish button
+                    index === 9?
+                    <div style={{display:"flex", justifyContent:"center"}}>
+                        <button type='submit'>Finish</button>
+                    </div>:
+                    <></>
                 }
-            </Carousel>
-            {
-                //if we reach the end of the quiz, display the finish button
-                index === 9?
-                <div style={{display:"flex", justifyContent:"center"}}>
-                    <button type='submit'>Finish</button>
-                </div>:
-                <></>
-            }
-    </form>
+        </form>
+    </div>
     )
 }
 export default Quiz;

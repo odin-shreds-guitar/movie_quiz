@@ -47,9 +47,9 @@ const Reg = (props)=>{
         <div>
             <h1>Register</h1>
             <form onSubmit={(e)=>{ submitHandler(e)}}>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input id="username" type="text" class="form-control" name="username" value={user.username} onChange={(e)=>{inputHandler(e)}}/>
+                <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Username</label>
+                    <input id="username" type="text" className="form-control" name="username" value={user.username} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.username?
                         <p className="text-danger">{errors.username.message}</p>
@@ -57,9 +57,9 @@ const Reg = (props)=>{
                         null
                     }
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input id="email" class="form-control"  type="email" name="email" value={user.email} onChange={(e)=>{inputHandler(e)}}/>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email</label>
+                    <input id="email" className="form-control"  type="email" name="email" value={user.email} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.email?
                         <p className="text-danger">{errors.email.message}</p>
@@ -67,9 +67,9 @@ const Reg = (props)=>{
                         null
                     }
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input id="password" class="form-control"  type="password" name="password" value={user.password} onChange={(e)=>{inputHandler(e)}}/>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input id="password" className="form-control"  type="password" name="password" value={user.password} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.password?
                         <p className="text-danger">{errors.password.message}</p>
@@ -77,9 +77,9 @@ const Reg = (props)=>{
                         null
                     }
                 </div>
-                <div class="mb-3">
-                    <label for="confirm-password" class="form-label">Confirm Password</label>
-                    <input id="confirm-password" class="form-control" type="password" name="confirmPassword" value={user.confirmPassword} onChange={(e)=>{inputHandler(e)}}/>
+                <div className="mb-3">
+                    <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
+                    <input id="confirm-password" className="form-control" type="password" name="confirmPassword" value={user.confirmPassword} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.confirmPassword?
                         <p className="text-danger">{errors.confirmPassword.message}</p>
@@ -87,7 +87,7 @@ const Reg = (props)=>{
                         null
                     }
                 </div>
-                <button class="btn btn-primary" type="submit">Register</button>
+                <button className="btn btn-primary" type="submit">Register</button>
             </form>
         </div>
     )
