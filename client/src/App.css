@@ -40,14 +40,12 @@ body{
 #test-box{
   /* border: solid red 3px; */
   width: 350px;
-  height: 250px;
   text-align: center;
 }
 
 #test-box2{
   /* border: solid red 3px; */
   width: 350px;
-  height: 250px;
   line-height: 250px;
   text-align: center
 }
@@ -65,7 +63,7 @@ body{
 }
 
 #app-title{
-  line-height: 250px;
+  line-height: 85px;
   font-size: 4rem;
 }
 
@@ -78,4 +76,8 @@ body{
   height: auto;
   padding: 10px;
   width: 350px;
+}
+
+.nav-item{
+  margin-left: 15px
 }

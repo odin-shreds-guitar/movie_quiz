@@ -2,9 +2,7 @@ import React, { useState, useEffect }from 'react';
 import axios from 'axios';
 import background from "../img/background.png"
 import { useNavigate } from "react-router-dom";
-// import components here
-// 
-// 
+import Navbar from '../components/Navbar';
 
 const Main = () => {
     // const [whatever, setWhatever] = useState([]);
@@ -43,19 +41,7 @@ const Main = () => {
 
 	return (
         <div style={{ backgroundImage: `url(${background})`}}>
-            <div id="main-grid">
-				<p id="test-box"></p>
-				<p id="test-box2">
-					<h1 id="app-title">Movie Quiz</h1>
-				</p>
-				<p id="test-box">
-					{
-						errors === ""
-						? <span><a href='https://api.themoviedb.org' target="_blank" className='link-success'>API Status: OK</a></span>
-						: <span><a href='https://api.themoviedb.org' target="_blank" className='link-danger'>API Status: Down</a></span>
-					}
-				</p>
-			</div>
+			< Navbar />
 				{/* validation  */}
 				{
 					errors 

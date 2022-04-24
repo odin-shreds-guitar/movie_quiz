@@ -2,6 +2,8 @@ import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import {useNavigate} from "react-router";
+import Navbar from "./Navbar";
+import background from "../img/background.png"
 
 const UserProfile= (props)=>{
     const [loggedUser, setLoggedUser]=useState({});
@@ -29,14 +31,6 @@ const UserProfile= (props)=>{
             setCommentList(res.data);
         }).catch((err)=>{console.log(err)})
     },[])
-
-    const logout=()=>{
-        axios.post("http://localhost:8000/api/users/logout",{},{withCredentials:true})
-        .then((res)=>{
-            console.log(res.data)
-            navi("/login")
-        }).catch((err)=>{console.log(err)})
-    }
 
     const inputHandler=(e)=>{
         setComment({
@@ -93,8 +87,10 @@ const UserProfile= (props)=>{
     }
 
     return(
-        <div>
-            <h1>{user.username}</h1>
+        <div style={{ backgroundImage: `url(${background})`}}>
+            < Navbar/> 
+            <h1>Hi {user.username} !</h1>
+            <h2>Here are your comments:</h2>
             {
                 commentList.map((comm,index)=>{
                     return(
@@ -121,8 +117,6 @@ const UserProfile= (props)=>{
 
             <button type="submit">Comment</button>
         </form>
-
-            <button onClick={()=>{logout()}}>logout</button>
         </div>
     )
 }
