@@ -82,8 +82,9 @@ const Quiz=() =>{
                         if(indx < 10){
                             return<Carousel.Item key={indx} style={{marginLeft:"25vw"}}>
                             <img src={`${base_url}${movie.backdrop_path}`} className="d-block w-100" alt='' style={{maxWidth:"50vw"}}></img>
+                            <h1>Question {indx + 1}/10</h1> 
+                            <h3>Which movie is this?</h3>
                             <div className="form-group ">
-                            <label htmlFor='answer'>Which movie is this? </label>
                             <input style={{width:"50vw"}} type="text" className="form-control" id={`answer${indx}`} placeholder="Enter answer"
                                 onChange={(e)=>{
                                         //this logic allows the index of quizQuestions to match the index of answered questions so as to make it easier to compare upon submission
@@ -94,11 +95,11 @@ const Quiz=() =>{
                             </input>
                             {/* for testing purposes */}
                             {/* <p> {movie.title}</p> */}
-                            {
+                            {/* {
                                 movie.title === tempAnswers[indx]
                                     ? <span style={{color: "green", padding: "30px"}}>Correct!</span>
                                     : <span style={{color: "red", padding: "30px"}}>Wrong!</span>
-                            }
+                            } */}
                             </div>
                         </Carousel.Item>
                         }
