@@ -1,6 +1,7 @@
 import React, { useState, useEffect }from 'react';
 import axios from 'axios';
 import background from "../img/background.png"
+import { useNavigate } from "react-router-dom";
 // import components here
 // 
 // 
@@ -36,7 +37,9 @@ const Main = () => {
 	useEffect(() => {
             checkApi();
 		}, [])
-
+	
+	// declaring the useNavigate to be used in the form
+	const navi =useNavigate();	
 
 	return (
         <div style={{ backgroundImage: `url(${background})`}}>
@@ -62,7 +65,7 @@ const Main = () => {
 			<div id="main-grid">
 				<p id="test-box"></p>
 				<p id="test-box2">
-					<button type="button" id="start-game-button" class="shadow-lg btn btn-warning">Start a Game</button>
+					<button  type="button" id="start-game-button" class="shadow-lg btn btn-warning" onClick={() => {navi(`/quiz`)}}>Start a Game</button>
 				</p>
 				<p id="test-box">
 					<p id="p-scoreboard">

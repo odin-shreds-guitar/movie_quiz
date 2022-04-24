@@ -52,7 +52,7 @@ const Quiz=() =>{
                 }
                 
                 // if User answer matches movie title set both total and correct amout +1
-                else if(userAnswers[idx].toLowerCase() ===movie.title.toLowerCase()){
+                else if(userAnswers[idx].toLowerCase() === movie.title.toLowerCase()){
                     setCorrectAnswers(correctAnswers++);
                     setTotalAnswers(totalAnswers++);
                 }
@@ -87,6 +87,12 @@ const Quiz=() =>{
                             setUserAnswers(tempAnswers);
                             console.log(userAnswers)
                         }}></input>
+                        <p> {movie.title}</p>
+                        {
+                            movie.title === userAnswers[indx]
+                            ? <span style={{color: "green", padding: "30px"}}>Correct!</span>
+                            : <span style={{color: "red", padding: "30px"}}>Wrong!</span>
+                        }
                         </div>
                         {/* <p>{movie.title}</p> */}
                     </Carousel.Item>
