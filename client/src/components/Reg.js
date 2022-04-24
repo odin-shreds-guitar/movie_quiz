@@ -52,7 +52,7 @@ const Reg = (props)=>{
                     <input id="username" type="text" class="form-control" name="username" value={user.username} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.username?
-                        <p>{errors.username.message}</p>
+                        <p className="text-danger">{errors.username.message}</p>
                         :
                         null
                     }
@@ -62,7 +62,7 @@ const Reg = (props)=>{
                     <input id="email" class="form-control"  type="email" name="email" value={user.email} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.email?
-                        <p>{errors.email.message}</p>
+                        <p className="text-danger">{errors.email.message}</p>
                         :
                         null
                     }
@@ -72,7 +72,7 @@ const Reg = (props)=>{
                     <input id="password" class="form-control"  type="password" name="password" value={user.password} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.password?
-                        <p>{errors.password.message}</p>
+                        <p className="text-danger">{errors.password.message}</p>
                         :
                         null
                     }
@@ -82,7 +82,7 @@ const Reg = (props)=>{
                     <input id="confirm-password" class="form-control" type="password" name="confirmPassword" value={user.confirmPassword} onChange={(e)=>{inputHandler(e)}}/>
                     {
                         errors.confirmPassword?
-                        <p>{errors.confirmPassword.message}</p>
+                        <p className="text-danger">{errors.confirmPassword.message}</p>
                         :
                         null
                     }
