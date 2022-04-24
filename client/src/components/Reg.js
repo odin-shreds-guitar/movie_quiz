@@ -10,6 +10,7 @@ const Reg = (props)=>{
         password:"",
         confirmPassword:""
     })
+    const navi =useNavigate();
 
     const [errors,setErrors]=useState({});
     
@@ -24,9 +25,18 @@ const Reg = (props)=>{
     const submitHandler=(e)=>{
         e.preventDefault();
 
-        axios.post("http://localhost:8000/api/users/register",user)
+        axios.post("http://localhost:8000/api/users/register",user,{withCredentials:true})
         .then((res)=>{
             console.log(res.data)
+            axios.post("http://localhost:8000/api/users/login",user,{withCredentials:true})
+                    .then((res)=>{
+                        console.log(res.data)
+                        axios.get("http://localhost:8000/api/users/logged",{withCredentials:true})
+                        .then((res)=>{
+                            console.log(res.data)
+                            navi(`/user/${res.data._id}`)
+                        }).catch((err)=>{console.log(err)})
+                    }).catch((err)=>{console.log(err)})
         }).catch((err)=>{
             console.log(err)
             setErrors(err.response.data.errors)

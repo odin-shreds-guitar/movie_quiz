@@ -20,5 +20,6 @@ app.use(cookieParser());
 require('./config/mongoose.config');
 require('./routes/moviequiz.routes')(app);
 require("./routes/user.routes")(app);
+require("./routes/comment.routes")(app)
 
 app.listen(8000, ()=> console.log("you are connected to your port"));
