@@ -5,6 +5,7 @@ import Reg from './components/Reg';
 import Login from './components/Login';
 import Quiz from './components/Quiz';
 import Results from './components/Results';
+import UserProfile from './components/UserProfile';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/quiz" element={<Quiz/>}/>
         <Route path="/results/:correctNum/:totalNum" element={<Results/>}/>
+        <Route path="/user/:id" element={<UserProfile/>}/>
       </Routes>
     </BrowserRouter>
   );

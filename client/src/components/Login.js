@@ -8,11 +8,20 @@ const Login=(props)=>{
     const [password,setPassword]=useState("");
     const [errors,setErrors]=useState("");
 
+    const navi=useNavigate();
+
     const submitHandler=(e)=>{
         e.preventDefault();
         axios.post("http://localhost:8000/api/users/login",{email:email,password:password},{withCredentials:true})
         .then((res)=>{
             console.log(res.data)
+            axios.get("http://localhost:8000/api/users/logged",{withCredentials:true})
+            .then((res)=>{
+                console.log(res.data)
+                navi(`/user/${res.data._id}`);
+            }).catch((err)=>{
+                console.log(err)
+            })
         }).catch((err)=>{
             console.log(err)
             setErrors("Invalid email/password")
