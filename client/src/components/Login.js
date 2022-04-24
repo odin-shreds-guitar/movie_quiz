@@ -78,16 +78,16 @@ const Login=(props)=>{
                     <div id="login-box" className="bg-light">
                         <form onSubmit={(e)=>{submitHandler(e)}}>
                             <h1>Login</h1>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
-                                    <input type="email" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} class="form-control" id="email" aria-describedby="emailHelp"/>
-                                    <div id="emailHelp" class="form-text">
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="form-label">Email address</label>
+                                    <input type="email" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} className="form-control" id="email" aria-describedby="emailHelp"/>
+                                    <div id="emailHelp" className="form-text">
                                         We'll never share your email with anyone else.
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} class="form-control" id="password"/>
+                                <div className="mb-3">
+                                    <label htmlFor="password" className="form-label">Password</label>
+                                    <input type="password" name="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} className="form-control" id="password"/>
                                 {
                                     errors?
                                     <p className="text-danger">{errors}</p>
@@ -95,7 +95,7 @@ const Login=(props)=>{
                                     null
                                 }
                                 </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" className="btn btn-primary">Login</button>
                         </form>
                     </div>
                 </p>
@@ -104,7 +104,7 @@ const Login=(props)=>{
 				</p>
 			</div>
             <hr/>
-            <div className='col text-center' style={{"padding":"20px"}}><a href="https://github.com/odin-shreds-guitar/movie_quiz" target="_blank" class="link-primary" style={{"text-decoration":"none", "margin-top":"20px"}}><strong>Github</strong></a></div>
+            <div className='col text-center' style={{"padding":"20px"}}><a href="https://github.com/odin-shreds-guitar/movie_quiz" target="_blank" className="link-primary" style={{"text-decoration":"none", "margin-top":"20px"}}><strong>Github</strong></a></div>
         </div>
     )
 }

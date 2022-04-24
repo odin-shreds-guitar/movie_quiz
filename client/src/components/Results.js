@@ -9,7 +9,7 @@ const Results =()=>{
     
     return <div>
         <p>You Got {correctNum} out of {totalNum} correct</p>
-        <button  type="button" id="go-home" class="shadow-lg btn btn-warning" onClick={() => {navi(`/main`)}}>Go to home</button>
+        <button  type="button" id="go-home" className="shadow-lg btn btn-warning" onClick={() => {navi(`/main`)}}>Go to home</button>
     </div>
 }
 export default Results;

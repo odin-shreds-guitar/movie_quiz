@@ -14,12 +14,12 @@ const Main = () => {
 			<div id="main-grid">
 				<p id="test-box"></p>
 				<p id="test-box2">
-					<button  type="button" id="start-game-button" class="shadow-lg btn btn-warning" onClick={() => {navi(`/quiz`)}}>Start a Game</button>
+					<button  type="button" id="start-game-button" className="shadow-lg btn btn-warning" onClick={() => {navi(`/quiz`)}}>Start a Game</button>
 				</p>
 				<p id="test-box">
 					<p id="p-scoreboard">
 						<h2>Scoreboard</h2>
-						<table class="table table-dark">
+						<table className="table table-dark">
 							<thead>
 								<tr>
 									<th scope="col">Rank</th>
@@ -53,7 +53,7 @@ const Main = () => {
 				</p>
 			</div>
             <hr/>
-            <div className='col text-center' style={{"padding":"20px"}}><a href="https://github.com/odin-shreds-guitar/movie_quiz" target="_blank" class="link-primary" style={{"text-decoration":"none", "margin-top":"20px"}}><strong>Github</strong></a></div>
+            <div className='col text-center' style={{"padding":"20px"}}><a href="https://github.com/odin-shreds-guitar/movie_quiz" target="_blank" className="link-primary" style={{"text-decoration":"none", "margin-top":"20px"}}><strong>Github</strong></a></div>
         </div>
     )
 }
