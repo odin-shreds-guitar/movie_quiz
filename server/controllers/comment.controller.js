@@ -23,5 +23,15 @@ module.exports={
                 console.log(deleted);
                 res.json(deleted);
             }).catch((err)=>{res.json({message:"error in deleteOne",error:err})})
+        },
+        updateComment:(req,res)=>{
+            Comment.findOneAndUpdate({_id: req.params.com},req.body,{new:true,runValidators:true})
+            .then((updated)=>{
+                console.log(updated);
+                res.json(updated)
+            }).catch((err)=>{
+                console.log(err);
+                res.status(400).json(err);
+            })
         }
 }
