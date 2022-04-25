@@ -16,6 +16,9 @@ const CommentSch= new mongoose.Schema({
     },
     username:{
         type:String
+    },
+    likeAmount:{
+        type: Number
     }
 },{timestamps:true})
 const Comment = mongoose.model("Comment", CommentSch);
