@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
-import {Link, navigate} from "@reach/router"; // "npm i @reach/router --legacy-peer-deps"
-// import { useNavigate } from "react-router-dom";
+// import {Link, navigate, useNavigate} from "@reach/router"; // "npm i @reach/router --legacy-peer-deps"
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
 const ScoreBoard = () => {
 
+    const navigate = useNavigate()
 
     const [user, setUser] = useState(null);
     const [score, setScore] = useState([]);
@@ -65,13 +66,16 @@ const ScoreBoard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
+                    {user.map((hero, index) => (
+                        
+                        <tr>
+                        <td scope="row">1</td>
+
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    
+                    ))}
                 </tbody>
             </table>
 
