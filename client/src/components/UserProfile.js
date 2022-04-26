@@ -165,18 +165,18 @@ const UserProfile= (props)=>{
                                                 </div>
                                                 <p className="user-comment-text text-justify">{comm.message}</p>
                                                 <div class="mt-3 d-flex align-items-center justify-content-between"> 
-                                                    <span class="fs-13">Likes: {comm.likes.length}</span> 
+                                                    <span class="fs-13"><i class="bi bi-hand-thumbs-up text-info fs-3 ms-2"></i> {comm.likes.length}</span> 
                                                     <div>
                                                         <span>
                                                             {
                                                                 comm.createdBy==loggedUser._id
-                                                                ? <button class="btn btn-danger ms-2" onClick={()=>{deleteHandler(comm._id)}}>Delete</button>
+                                                                ? <i class="bi bi-backspace-fill text-danger fs-3 ms-2" onClick={()=>{deleteHandler(comm._id)}}></i>
                                                                 : null
                                                             }
                                                         </span>
                                                         {likesCheck(comm)== true
-                                                            ? <button type="button" class="btn btn-secondary ms-2" id="unlike" onClick={()=>{unlikeHandler(comm)}}>Unlike</button>
-                                                            : <button type="button" class="btn btn-primary ms-2" id="like" onClick={()=>{likeHandler(comm)}}>Like</button>
+                                                            ? <i class="bi bi-hand-thumbs-down-fill text-secondary fs-3 ms-2" id="unlike" onClick={()=>{unlikeHandler(comm)}}></i>
+                                                            : <i class="bi bi-hand-thumbs-up-fill text-success fs-3 ms-2" id="like" onClick={()=>{likeHandler(comm)}}></i>
                                                         }
                                                     </div>
                                                 </div>
