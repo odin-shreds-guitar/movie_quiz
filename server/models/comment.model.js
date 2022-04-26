@@ -17,9 +17,10 @@ const CommentSch= new mongoose.Schema({
     username:{
         type:String
     },
-    likeAmount:{
-        type: Number
+    likes:{
+        type: []
     }
+   
 },{timestamps:true})
 const Comment = mongoose.model("Comment", CommentSch);
 module.exports=Comment;
