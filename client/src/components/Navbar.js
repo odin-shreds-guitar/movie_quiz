@@ -2,6 +2,7 @@ import React,{useState, useEffect} from "react";
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom'
 import axios from "axios";
+import { BoxArrowLeft, Person } from "react-bootstrap-icons";
 
 const Navbar=(props)=>{
         const [userId, setUserID] = useState()
@@ -26,17 +27,14 @@ const Navbar=(props)=>{
         return(
             <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Movie Quiz</a>
+                    <a className="navbar-brand fs-2" href="/main">Movie Quiz</a>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item" id="nav-item">
-                                {<Link to={"/main"}>Home</Link>}
-                            </li>
-                            <li className="nav-item" id="nav-item">
-                                {<Link to={"/user/"+ userId} >Profile</Link>}
+                                {<Link to={"/user/"+ userId} >< Person size={40}/>Profile</Link>}
                             </li>
                         </ul>
-                        <button className="btn btn-danger" type="button" id="logout" onClick={() => logout()}>Logout</button>
+                        <BoxArrowLeft size={40} color="red" onClick={() => logout()}/>
                     </div>
                 </div>
             </nav>
