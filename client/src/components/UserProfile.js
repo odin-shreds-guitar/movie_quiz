@@ -128,69 +128,68 @@ const UserProfile= (props)=>{
         }
         return false
     }
-            
-        
-       
-    
 
     return(
         <div style={{ backgroundImage: `url(${background})`}}>
             < Navbar/> 
-            <div id="userPro">
-                <h1>Hi {user.username} !</h1>
-            <h2>Here are your comments:</h2>
-            {
-                commentList.map((comm,index)=>{
-                    return(
-                        <>
-                            <div>
-                                <h4 style={{color:"green"}}>{comm.username}</h4>
-                                <p style={{fontStyle:"italic",
-                            color:"gray"}}>{getTime(comm.createdAt)}</p>
-                            <p>likes:{comm.likes.length}</p>
-                                <p>{comm.message}</p>
-                                {
-                                    comm.createdBy==loggedUser._id ?
-                                    <button onClick={()=>{deleteHandler(comm._id)}}>Delete</button>
-                                    :
-                                    null
-                                }
-                                
-                           
-                                    
-                                   
-                                    {likesCheck(comm)==true?
-
-                                    
-                                    <button id="unlike" onClick={()=>{unlikeHandler(comm)}}>unlike</button>
-                                    
-                                 
-                                    
-                                    
-                                    :
-                                       
-                                            
-                                            <button id="like"  onClick={()=>{likeHandler(comm)}}>like</button>
-                                    
-                                    
-                                    }
-                                
-                                    
-                            
-
+            
+            {/* new form */}
+            <div className="container mt-5 bg">
+                <div className="row d-flex justify-content-center">
+                    <div className="col-md-7">
+                        <div>
+                            <h1>Hi {user.username} !</h1>
+                        </div>
+                        <div className="shadow p-3 bg-light rounded">
+                            <div className="mt-5 d-flex flex-row"> 
+                                <img className="me-2" src="https://i.imgur.com/jD4jCW9.png" width="40" height="40"/>
+                                <div className="w-100 ml-2 comment-area"> 
+                                    <textarea className="form-control" onChange={(e)=>{inputHandler(e)}}></textarea>
+                                    <button className="btn btn-warning btn-block mt-2 post-btn" id="post" onClick={(e)=>{submitHandler(e)}}>Post Comment</button> 
+                                </div>
                             </div>
-                        </>
-                    )
-                })
-            }<hr></hr>
-        <form onSubmit={(e)=>{submitHandler(e)}}>
-            <label>Comment</label>
-            <input type="text" name="message" value={comment.message} onChange={(e)=>{inputHandler(e)}}/>
-
-            <button type="submit">Comment</button>
-        </form> 
+                            {
+                            commentList.map((comm,index)=>{
+                                return(
+                                    <>
+                                        <div className="d-flex flex-row mt-5"> 
+                                            <img className="me-2" src="https://i.imgur.com/jD4jCW9.png" width="40" height="40"/>
+                                            <div className="w-100">
+                                                <div className="d-flex justify-content-between align-items-center">
+                                                    <div className="d-flex flex-row align-items-center"> 
+                                                        <h3 className="font-weight-bold name">{comm.username}</h3> 
+                                                    </div> 
+                                                    <div className="d-flex flex-row align-items-center"> 
+                                                        <h4 className="text-muted time-text">{getTime(comm.createdAt)}</h4> 
+                                                    </div> 
+                                                </div>
+                                                <p className="user-comment-text text-justify">{comm.message}</p>
+                                                <div class="mt-3 d-flex align-items-center justify-content-between"> 
+                                                    <span class="fs-13">Likes: {comm.likes.length}</span> 
+                                                    <div>
+                                                        <span>
+                                                            {
+                                                                comm.createdBy==loggedUser._id
+                                                                ? <button class="btn btn-danger ms-2" onClick={()=>{deleteHandler(comm._id)}}>Delete</button>
+                                                                : null
+                                                            }
+                                                        </span>
+                                                        {likesCheck(comm)== true
+                                                            ? <button type="button" class="btn btn-secondary ms-2" id="unlike" onClick={()=>{unlikeHandler(comm)}}>Unlike</button>
+                                                            : <button type="button" class="btn btn-primary ms-2" id="like" onClick={()=>{likeHandler(comm)}}>Like</button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            })
+                        }
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
     )
 }

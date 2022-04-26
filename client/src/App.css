@@ -87,3 +87,6 @@ margin-left: 800px;
 .hide{
   visibility: hidden;
 }
+
+/* comments and likes */
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
