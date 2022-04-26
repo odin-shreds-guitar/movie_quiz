@@ -2,7 +2,7 @@ const ScoreController = require('../controllers/moviequiz.controller');
 const {authenticate} = require("../config/jwt.config");
 
 module.exports = (app) => {
-	// app.get('/', ScoreController.index);
+	app.get('/', ScoreController.index);
 
 	// // app.post("/api/scores", ScoreController.createScore);
 	// app.post("/api/scores", authenticate, ScoreController.createScore);
