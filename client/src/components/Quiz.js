@@ -96,9 +96,9 @@ const Quiz=() =>{
                     keyboard={false} 
                     indicators={false} 
                     wrap={false} 
-                    nextIcon={<button type="button" class="btn btn-warning">Next question</button>} 
+                    nextIcon={<i className="bi bi-arrow-right-circle-fill text-warning fs-1"></i>} 
                     interval={null} 
-                    prevIcon={<button type="button" class="btn btn-warning">Previous Question</button>}>
+                    prevIcon={<i className="bi bi-arrow-left-circle-fill text-warning fs-1"></i>}>
                     {
                     //mapping the quiz questions in state to then display posters
                     quizQuestions.map((movie,indx)=>{

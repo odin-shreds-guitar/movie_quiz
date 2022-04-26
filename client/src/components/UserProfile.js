@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import {useNavigate} from "react-router";
+import { useNavigate } from "react-router";
 import Navbar from "./Navbar";
 import background from "../img/background.png"
 
@@ -10,7 +10,7 @@ const UserProfile= (props)=>{
     const [user,setUser]=useState({});
     const [commentList,setCommentList]=useState([])
     const [comment, setComment]=useState({})
-    const[likeId,setLikeId]=useState("")
+    const [likeId,setLikeId]=useState("")
     const [likes,setLikes]=useState([]);
     const [liked,setLiked]=useState("")
     const {id}=useParams()
@@ -132,7 +132,6 @@ const UserProfile= (props)=>{
     return(
         <div style={{ backgroundImage: `url(${background})`}}>
             < Navbar/> 
-            
             {/* new form */}
             <div className="container mt-5 bg">
                 <div className="row d-flex justify-content-center">
@@ -164,19 +163,19 @@ const UserProfile= (props)=>{
                                                     </div> 
                                                 </div>
                                                 <p className="user-comment-text text-justify">{comm.message}</p>
-                                                <div class="mt-3 d-flex align-items-center justify-content-between"> 
-                                                    <span class="fs-13"><i class="bi bi-hand-thumbs-up text-info fs-3 ms-2"></i> {comm.likes.length}</span> 
+                                                <div className="mt-3 d-flex align-items-center justify-content-between"> 
+                                                    <span className="fs-13"><i className="bi bi-hand-thumbs-up text-info fs-3 ms-2"></i> {comm.likes.length}</span> 
                                                     <div>
                                                         <span>
                                                             {
                                                                 comm.createdBy==loggedUser._id
-                                                                ? <i class="bi bi-backspace-fill text-danger fs-3 ms-2" onClick={()=>{deleteHandler(comm._id)}}></i>
+                                                                ? <i className="bi bi-backspace-fill text-danger fs-3 ms-2" onClick={()=>{deleteHandler(comm._id)}}></i>
                                                                 : null
                                                             }
                                                         </span>
                                                         {likesCheck(comm)== true
-                                                            ? <i class="bi bi-hand-thumbs-down-fill text-secondary fs-3 ms-2" id="unlike" onClick={()=>{unlikeHandler(comm)}}></i>
-                                                            : <i class="bi bi-hand-thumbs-up-fill text-success fs-3 ms-2" id="like" onClick={()=>{likeHandler(comm)}}></i>
+                                                            ? <i className="bi bi-hand-thumbs-down-fill text-secondary fs-3 ms-2" id="unlike" onClick={()=>{unlikeHandler(comm)}}></i>
+                                                            : <i className="bi bi-hand-thumbs-up-fill text-success fs-3 ms-2" id="like" onClick={()=>{likeHandler(comm)}}></i>
                                                         }
                                                     </div>
                                                 </div>
