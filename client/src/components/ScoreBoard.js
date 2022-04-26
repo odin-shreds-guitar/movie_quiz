@@ -66,7 +66,7 @@ const ScoreBoard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {user.map((hero, index) => (
+                    {user.map((score, index) => (
                         
                         <tr>
                         <td scope="row">1</td>

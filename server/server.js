@@ -18,7 +18,8 @@ app.use(cookieParser());
 
 
 require('./config/mongoose.config');
-require('./routes/moviequiz.routes')(app);
+
+require("./routes/moviequiz.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/comment.routes")(app)
 
