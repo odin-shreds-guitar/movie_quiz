@@ -10,9 +10,8 @@ const UserProfile= (props)=>{
     const [user,setUser]=useState({});
     const [commentList,setCommentList]=useState([])
     const [comment, setComment]=useState({})
-    const [likes, setLikes]=useState([])
     const[likeId,setLikeId]=useState("")
-    const[likeAmount,setLikeAmount]=useState(0);
+    const [likes,setLikes]=useState([]);
     const [liked,setLiked]=useState("")
     const {id}=useParams()
     const navi= useNavigate();
@@ -22,6 +21,7 @@ const UserProfile= (props)=>{
         .then((res)=>{
             console.log(res.data);
             setLoggedUser(res.data)
+
         }).catch((err)=>{console.log(err)})
 
         axios.get(`http://localhost:8000/api/users/${id}`,{withCredentials:true}).then((res)=>{
@@ -34,6 +34,8 @@ const UserProfile= (props)=>{
             console.log(res.data)
             setCommentList(res.data);
         }).catch((err)=>{console.log(err)})
+
+        
     },[])
 
     const inputHandler=(e)=>{
@@ -43,7 +45,6 @@ const UserProfile= (props)=>{
             profile:id,
             createdBy:loggedUser._id,
             username:loggedUser.username,
-            likeAmount:likeAmount
         })
     }
 
@@ -89,62 +90,48 @@ const UserProfile= (props)=>{
         }
     }
 
-    const checkLikes=(comm)=>{
-        axios.get(`http://localhost:8000/api/likes/${comm._id}`,{withCredentials:true})
-        .then((res)=>{
-             
-            if(res.data.length==0){
-                
-                return ;
-            }
-            for(var i=0; i<res.data.length;i++){
-                if(res.data[i].user==loggedUser._id){
-                    
-                    setLikeId(res.data[i].comment)
-                    setLiked(res.data[i].user)
-                    return  ;
-                }
-            }
-        }).catch((err)=>{console.log(err)})
-    }
 
-    const likeHandler=(e,comm)=>{
-        e.preventDefault();
-        axios.post("http://localhost:8000/api/likes",{user:loggedUser, comment:comm._id},{withCredentials:true})
-        .then((res)=>{
-            console.log(res.data)
-            setLikeId(res.data.comment);
-            axios.get(`http://localhost:8000/api/likes/${comm._id}`,{withCredentials:true})
-            .then((res)=>{
-                console.log(res.data);
-                axios.put(`http://localhost:8000/api/comments/${comm._id}`,{
-                    ...comm,
-                    likeAmount:res.data.length
-                },{withCredentials:true}).then((res)=>{window.location.reload(false);}).catch((err)=>{console.log(err)})
-            }).catch((err)=>{console.log(err)})
-        }).catch((err)=>{console.log(err)})
+
+    const likeHandler=(comm)=>{
+        
+        axios.put(`http://localhost:8000/api/comments/${comm._id}`,{...comm,
+    likes:[...comm.likes,loggedUser._id]},{withCredentials:true}).then((res)=>{
+        console.log(res.data)
+        window.location.reload(false);
+    })
+    .catch((err)=>{console.log(err)})
+
     }
 
     const unlikeHandler=(comm)=>{
-        axios.get(`http://localhost:8000/api/likes/${comm._id}`,{withCredentials:true})
-            .then((res)=>{
-                for(var i=0; i<res.data.length;i++){
-                    if(res.data[i].user==loggedUser._id){
-                        axios.delete(`http://localhost:8000/api/likes/${res.data[i]._id}`,{withCredentials:true})
-                        .then((res)=>{
-                            axios.get(`http://localhost:8000/api/likes/${comm._id}`,{withCredentials:true})
-                            .then((res)=>{
-                                axios.put(`http://localhost:8000/api/comments/${comm._id}`,{
-                                    ...comm,
-                                    likeAmount:res.data.length
-                                },{withCredentials:true}).then((res)=>{window.location.reload(false);}).catch((err)=>{console.log(err)})
-                            }).catch((err)=>{console.log(err)})
-
-                        }).catch((err)=>{console.log(err)})
-                    }
-                }
-            }).catch((err)=>{console.log(err)})
+        
+        for(var i=0; i<comm.likes.length; i++){
+            console.log("hi")
+            if(comm.likes[i]==loggedUser._id){
+                comm.likes.splice(i,1);
+                
+            }
+        }
+        axios.put(`http://localhost:8000/api/comments/${comm._id}`,{...comm,
+    likes:comm.likes},{withCredentials:true}).then((res)=>{
+        console.log(res.data)
+        window.location.reload(false);
+    }).catch((err)=>{console.log(err)})
     }
+
+    const likesCheck=(comm)=>{
+
+        for(var i=0; i<comm.likes.length; i++){
+            if(comm.likes[i]==loggedUser._id){
+                return true;
+            }
+        }
+        return false
+    }
+            
+        
+       
+    
 
     return(
         <div style={{ backgroundImage: `url(${background})`}}>
@@ -160,7 +147,7 @@ const UserProfile= (props)=>{
                                 <h4 style={{color:"green"}}>{comm.username}</h4>
                                 <p style={{fontStyle:"italic",
                             color:"gray"}}>{getTime(comm.createdAt)}</p>
-                            <p>likes:{comm.likeAmount}</p>
+                            <p>likes:{comm.likes.length}</p>
                                 <p>{comm.message}</p>
                                 {
                                     comm.createdBy==loggedUser._id ?
@@ -169,29 +156,27 @@ const UserProfile= (props)=>{
                                     null
                                 }
                                 
-                                    <>
-                                    {checkLikes(comm)
-
-                                    }
+                           
                                     
-                                    </>
-                                    {
-                                    liked==loggedUser._id && likeId==comm._id?
+                                   
+                                    {likesCheck(comm)==true?
 
                                     
-                                    <button onClick={()=>{unlikeHandler(comm)}}>unlike</button>
+                                    <button id="unlike" onClick={()=>{unlikeHandler(comm)}}>unlike</button>
                                     
                                  
                                     
-                                    :
-                                    <>
-                                       <form onSubmit={(e)=>{likeHandler(e,comm)}}>
-                                            
-                                            <button onMouseEnter={()=>{setLikeId(comm._id)}} type="submit">like</button>
-                                        </form>
                                     
-                                    </>
-                                }
+                                    :
+                                       
+                                            
+                                            <button id="like"  onClick={()=>{likeHandler(comm)}}>like</button>
+                                    
+                                    
+                                    }
+                                
+                                    
+                            
 
                             </div>
                         </>
