@@ -31,12 +31,6 @@ body{
   height: 100vh;
 }
 
-#start-game-button{
-  height: 75px;
-  width: 300px;
-  font-size: 20px;
-}
-
 #test-box{
   /* border: solid red 3px; */
   width: 350px;

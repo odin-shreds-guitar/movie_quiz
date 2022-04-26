@@ -66,7 +66,6 @@ const Quiz=() =>{
         const totalAnswers = 10;
         let correct = 0;
         for (const answer in userResponses) {
-            console.log(`${answer}: ${userResponses[answer]}`);
             if (answer === userResponses[answer]){
                 correct++;
             }  
@@ -96,7 +95,7 @@ const Quiz=() =>{
                     keyboard={false} 
                     indicators={false} 
                     wrap={false} 
-                    nextIcon={<i className="bi bi-arrow-right-circle-fill text-warning fs-1"></i>} 
+                    nextIcon={<i className="bi bi-arrow-right-circle-fill text-warning fs-1"></i>                    } 
                     interval={null} 
                     prevIcon={<i className="bi bi-arrow-left-circle-fill text-warning fs-1"></i>}>
                     {
@@ -132,7 +131,7 @@ const Quiz=() =>{
                     //if we reach the end of the quiz, display the finish button
                     index === 9?
                     <div style={{display:"flex", justifyContent:"center"}}>
-                        <button type="submit" class="btn btn-warning" >Finish</button>
+                        <button className="btn bg-transparent" type="submit"><i type="submit" className="bi bi-check-circle-fill text-success fs-1"></i></button>
                     </div>:
                     <></>
                 }

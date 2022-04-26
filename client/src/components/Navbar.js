@@ -19,7 +19,6 @@ const Navbar=(props)=>{
         const logout=()=>{
             axios.post("http://localhost:8000/api/users/logout",{},{withCredentials:true})
             .then((res)=>{
-                console.log(res.data)
                 navi("/")
             }).catch((err)=>{console.log(err)})
         }

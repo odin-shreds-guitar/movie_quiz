@@ -1,8 +1,8 @@
-import React, { useState, useEffect }from 'react';
-import axios from 'axios';
+import React from 'react';
 import background from "../img/background.png"
 import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
+import { PlayBtn } from 'react-bootstrap-icons';
 
 const Main = () => {
 	// declaring the useNavigate to be used in the form
@@ -14,7 +14,7 @@ const Main = () => {
 			<div id="main-grid">
 				<p id="test-box"></p>
 				<p id="test-box2">
-					<button  type="button" id="start-game-button" className="shadow-lg btn btn-warning" onClick={() => {navi(`/quiz`)}}>Start a Game</button>
+					<PlayBtn color="green" size={150} onClick={() => {navi(`/quiz`)}} />
 				</p>
 				<p id="test-box">
 					<p id="p-scoreboard">
@@ -53,7 +53,7 @@ const Main = () => {
 				</p>
 			</div>
             <hr/>
-            <div className='col text-center' style={{"padding":"20px"}}><a href="https://github.com/odin-shreds-guitar/movie_quiz" target="_blank" className="link-primary" style={{"text-decoration":"none", "margin-top":"20px"}}><strong>Github</strong></a></div>
+            <div className='col text-center' style={{"padding":"20px"}}><a href="https://github.com/odin-shreds-guitar/movie_quiz" target="_blank" className="link-primary" style={{"textDecoration":"none", "marginTop":"20px"}}><strong>Github</strong></a></div>
         </div>
     )
 }
