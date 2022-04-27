@@ -6,8 +6,8 @@ mongoose.connect("mongodb://localhost/moviequiz", {
 	useUnifiedTopology : true,
 })
 	.then(() => 
-		// console.log(`Connected to ${process.env.DB_NAME} database!`))
-		console.log("DB connected"))
+		console.log(`Connected to ${process.env.DB_NAME} database!`))
+		// console.log("DB connected"))
 
 	.catch(() => 
 		console.log("There was an error connecting to the DB"))
