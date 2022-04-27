@@ -2,10 +2,11 @@
 
 const Score = require("../models/moviequiz.model");
 const jwt = require("jsonwebtoken");
+// const jwtpayload = require("jsonwebtoken");
 const User = require("../models/user.model");
 const scoreRoutes = require("../routes/moviequiz.routes");
 
-module.exports.index = ( request, response ) => {
+module.exports = {
 
 	// response.json({
 	// 	message: "Index from controller working as expected"
@@ -13,9 +14,14 @@ module.exports.index = ( request, response ) => {
 
 	createScore: (req, res) => {
 
-        const newScoreObject = new Score(req.body);
-       
-        newScoreObject.createdBy = req.jwtpayload.id;
+        const newScoreObject = new Score(req.body);       
+
+		const decodedJWT = jwt.decode(req.cookies.usertoken,{
+            complete: true
+        })
+        newScoreObject.createdBy = decodedJWT.payload.id
+		console.log(req);
+        // newScoreObject.createdBy = req.jwtpayload.id;
         
         newScoreObject.save()
             .then((newScore) => {
@@ -26,7 +32,7 @@ module.exports.index = ( request, response ) => {
                 console.log("Something went wrong in createScore");
                 res.status(400).json(err);
             })
-    }
+    },
 
     getOneScore: (req, res) => {
         Score.findOne({_id: req.params.id})
@@ -39,11 +45,11 @@ module.exports.index = ( request, response ) => {
                 console.log("findOne Score Failed");
                 res.json({ message: 'Something went wrong in getOneScore', error: err});
             })
-    }
+    },
     
     getAllScores: (req, res) => {
-        Score.find({}).collation({locale:"en", strength: 2}).sort({score:1})
-            .populate("createdBy", "username email")
+        Score.find().sort()
+            // .populate("createdBy", "username email")
             // .populate("messages", "content _id")
             .then((allScores) => {
                 res.json(allScores)
@@ -52,7 +58,7 @@ module.exports.index = ( request, response ) => {
                 console.log("getAllScores Failed");
                 res.status(400).json("Something went wrong in getAllScores");
             })
-    }
+    },
     
     deleteScore: (req, res) => {
         Score.deleteOne({_id: req.params.id})
@@ -63,7 +69,7 @@ module.exports.index = ( request, response ) => {
             console.log("deleteScore Failed");
             res.status(400).json("Something went wrong in deleteScore");
         })
-    }
+    },
     
 
     findAllScoresByUser: (req, res) => {
@@ -98,7 +104,7 @@ module.exports.index = ( request, response ) => {
                             res.status(400).json(err);
                     })
         }
-    }
+    },
 
 
 }
