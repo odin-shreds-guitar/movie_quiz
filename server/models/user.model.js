@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
     },
 
 }, { timestamps: true, versionKey: false});
+// }, { timestamps: true});
 
 
 UserSchema.virtual("confirmPassword")
