@@ -5,12 +5,11 @@ const cookieParser= require("cookie-parser");
 const app= express();
 
 app.use(express.json());
-
 app.use(express.urlencoded({extended:true}));
 
 app.use(cors({
+    credentials:true,
     origin:"http://localhost:3000",
-    credentials:true
 }));
 
 app.use(cookieParser());
@@ -24,4 +23,7 @@ require("./routes/user.routes")(app);
 require("./routes/comment.routes")(app)
 require("./routes/likes.routes")(app)
 
-app.listen(8000, ()=> console.log("you are connected to your port"));
+// app.listen(8000, ()=> console.log("you are connected to your port"));
+
+app.listen(process.env.MY_PORT, () => 
+    console.log(`Listening on Port ${process.env.MY_PORT}`))
