@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Quiz from './components/Quiz';
 import Results from './components/Results';
 import UserProfile from './components/UserProfile';
+import FindUsers from './components/FindUsers';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/quiz" element={<Quiz/>}/>
         <Route path="/results/:correctNum/:totalNum" element={<Results/>}/>
         <Route path="/user/:id" element={<UserProfile/>}/>
+        <Route path="/view-all" element={<FindUsers/>}/>
       </Routes>
     </BrowserRouter>
   );
