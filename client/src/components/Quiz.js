@@ -67,14 +67,25 @@ const Quiz=() =>{
         let correct = 0;
         for (const answer in userResponses) {
             if (answer === userResponses[answer]){
+                console.log(correct)
                 correct++;
+                console.log(correct)
             }  
         }
         setCorrectAnswers(correct);
+        
+        axios.post(`http://localhost:8000/api/scores`, { score: correct }, {withCredentials: true})
+                    .then((res) => {
+                        console.log(res)
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
 
         //redirects to results page after quiz is submitted
         return navigate(`/results/${correct}/${totalAnswers}`)
     }
+
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
@@ -95,7 +106,7 @@ const Quiz=() =>{
                     keyboard={false} 
                     indicators={false} 
                     wrap={false} 
-                    nextIcon={<i className="bi bi-arrow-right-circle-fill text-warning fs-1"></i>                    } 
+                    nextIcon={<i className="bi bi-arrow-right-circle-fill text-warning fs-1"></i>} 
                     interval={null} 
                     prevIcon={<i className="bi bi-arrow-left-circle-fill text-warning fs-1"></i>}>
                     {
