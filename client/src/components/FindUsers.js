@@ -73,7 +73,7 @@ const FindUsers=(props)=>{
                     <div className="input-group mb-3 fs-3" style={{width:"600px"}}>
                         <input type="text" value={searchItem} name="searchItem" className="form-control d-flex justify-content-center fs-4" placeholder="Start typing to search for a username" aria-label="username" aria-describedby="searchbar" onChange={(e)=>{setSearchItem(e.target.value); searchDb()}}/>
                         <div className="input-group-append">
-                            <button className="btn btn-dark ms-2 fs-3" type="button" nMouseEnter={()=>{resetUsers()}} onClick={()=>{directSearch()}}>Search</button>
+                            <button className="btn btn-dark ms-2 fs-3" type="button" onMouseEnter={()=>{resetUsers()}} onClick={()=>{directSearch()}}>Search</button>
                         </div>
                 </div>
             </div>
