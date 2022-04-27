@@ -29,7 +29,9 @@ module.exports={
             return res.sendStatus(400);
         }
 
-        res.cookie("usertoken",jwt.sign({
+        res.cookie("usertoken",
+            // Json webtoken payload info below
+            jwt.sign({
             id:user._id,
             email:user.email,
             username: user.username

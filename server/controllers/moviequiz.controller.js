@@ -1,29 +1,27 @@
-// const Project = require('../models/projectmgr.model')
-
 const Score = require("../models/moviequiz.model");
 const jwt = require("jsonwebtoken");
-// const jwtpayload = require("jsonwebtoken");
+
 const User = require("../models/user.model");
 const scoreRoutes = require("../routes/moviequiz.routes");
 
 module.exports = {
 
-	// response.json({
-	// 	message: "Index from controller working as expected"
-	// })
-
 	createScore: (req, res) => {
 
         const newScoreObject = new Score(req.body);       
+        // const score = new Score(req.body);       
 
 		const decodedJWT = jwt.decode(req.cookies.usertoken,{
             complete: true
         })
         newScoreObject.createdBy = decodedJWT.payload.id
-		console.log(req);
-        // newScoreObject.createdBy = req.jwtpayload.id;
+
+		// console.log(req);
+
+        // newScoreObject.createdBy = req.jwtpayload.id; //short version of above const decodedJwt code
         
         newScoreObject.save()
+        // score.save()
             .then((newScore) => {
                 console.log(newScore);
                 res.json(newScore)
@@ -36,7 +34,6 @@ module.exports = {
 
     getOneScore: (req, res) => {
         Score.findOne({_id: req.params.id})
-            // .populate("messages", "content likes")
             .then((oneScore) => {
                 console.log(oneScore);
                 res.json(oneScore)
@@ -48,9 +45,8 @@ module.exports = {
     },
     
     getAllScores: (req, res) => {
-        Score.find().sort()
-            // .populate("createdBy", "username email")
-            // .populate("messages", "content _id")
+		Score.find().sort({score:-1})
+        // Score.find().sort()
             .then((allScores) => {
                 res.json(allScores)
             })
@@ -77,7 +73,6 @@ module.exports = {
             User.findOne({username: req.params.username})
                 .then((userNotLoggedIn) => {
                     Score.find({createdBy: userNotLoggedIn._id})
-                        .populate("createdBy", "username")
                         .then((allScoresFromUser) => {
                             console.log(allScoresFromUser);
                             res.json(allScoresFromUser);
@@ -94,7 +89,6 @@ module.exports = {
                 }
                 else {
                     Score.find({createdBy: req.jwtpayload.id})
-                        .populate("createdBy", "username")
                         .then((allScoresFromLoggedInUser) => {
                             console.log(allScoresFromLoggedInUser);
                             res.json(allScoresFromLoggedInUser);
