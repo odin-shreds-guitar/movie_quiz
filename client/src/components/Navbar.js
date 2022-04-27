@@ -31,7 +31,12 @@ const Navbar=(props)=>{
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item" id="nav-item">
-                                {<Link to={"/user/"+ userId} >< Person size={40}/>Profile</Link>}
+                                {<Link to={"/user/"+ userId} onClick={()=>{
+                                    navi(`/user/${userId}`)
+                                    window.location.reload(false);}} >< Person size={40}/>Profile</Link>}
+                            </li>
+                            <li style={{marginTop:6}} className="nav-item" id="nav-item">
+                                {<Link to={"/view-all"}  >Find Users</Link>}
                             </li>
                         </ul>
                         <BoxArrowLeft size={40} color="red" onClick={() => logout()}/>
