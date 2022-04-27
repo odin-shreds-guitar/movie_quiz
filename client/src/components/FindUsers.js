@@ -66,19 +66,23 @@ const FindUsers=(props)=>{
     }
 
     return(
-        <div>
+        <div style={{ backgroundImage: `url(${background})`}}>
             <Navbar/>
-            <div style={{ backgroundImage: `url(${background})`}}>
-                <h1>Find Other Users!</h1>
-            <label>Search</label>
-            <input type="text" value={searchItem} name="searchItem" onChange={(e)=>{setSearchItem(e.target.value); searchDb()}}/>
-            <button onMouseEnter={()=>{resetUsers()}} onClick={()=>{directSearch()}}>Search</button>
+                <h1 className="d-flex justify-content-center">Find Other Users!</h1>
+                <div className="d-flex justify-content-center">
+                    <div className="input-group mb-3 fs-3" style={{width:"600px"}}>
+                        <input type="text" value={searchItem} name="searchItem" className="form-control d-flex justify-content-center fs-4" placeholder="Start typing to search for a username" aria-label="username" aria-describedby="searchbar" onChange={(e)=>{setSearchItem(e.target.value); searchDb()}}/>
+                        <div className="input-group-append">
+                            <button className="btn btn-dark ms-2 fs-3" type="button" nMouseEnter={()=>{resetUsers()}} onClick={()=>{directSearch()}}>Search</button>
+                        </div>
+                </div>
             </div>
+
             {allUsers.map((user,index)=>{
                 return(
-                    <div>
-                <Link to={`/user/${user._id}`}>{user.username}</Link><br></br>
-                </div>
+                    <div className="d-flex justify-content-center fs-3">
+                        <Link to={`/user/${user._id}`}>{user.username}</Link><br></br>
+                    </div>
                 );
             })}
         </div>
